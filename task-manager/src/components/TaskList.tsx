@@ -1,10 +1,21 @@
-type Task = { id: string; title: string; status: string };
-type Props = {
-  tasks: Task[];
-  onStatusChange: (taskId: string, newStatus: string) => void;
-  onDelete: (taskId: string) => void;
-};
+import TaskItem from "./TaskItem.tsx";
+import type { TaskListProps } from "../types";
 
-export default function TaskList({ tasks, onStatusChange, onDelete }: Props) {
-  return <div>{tasks.map((t) => <div key={t.id}><span>{t.title} ({t.status}) </span><button onClick={() => onStatusChange(t.id, "completed")}>Complete</button><button onClick={() => onDelete(t.id)}>Delete</button></div>)}</div>;
+export default function TaskList({ tasks, onStatusChange, onDelete }: TaskListProps) {
+  if (tasks.length === 0) {
+    return <p className="empty-state">No tasks match your filters.</p>;
+  }
+
+  return (
+    <section className="task-grid">
+      {tasks.map((task) => (
+        <TaskItem
+          key={task.id}
+          task={task}
+          onStatusChange={onStatusChange}
+          onDelete={onDelete}
+        />
+      ))}
+    </section>
+  );
 }

@@ -1,5 +1,6 @@
 import TaskFilter from "./components/TaskFilter.tsx";
 import TaskList from "./components/TaskList.tsx";
+import Taskitem from "./components/TaskItem.tsx";
 import { useState } from "react";
 
 function App() {
@@ -9,6 +10,8 @@ function App() {
 
   return (
     <div>
+      <h1>Task Manager</h1>
+      <Taskitem></Taskitem>
       <TaskFilter onFilterChange={(f) => setStatus(f.status ?? "")} />
       <TaskList
         tasks={shown}
