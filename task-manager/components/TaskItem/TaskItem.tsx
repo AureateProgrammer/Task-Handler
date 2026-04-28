@@ -1,4 +1,4 @@
-import TaskItemProps from "./TaskItem.types";
+import TaskItemProps from '../types';
 import React from "react";
 
 
